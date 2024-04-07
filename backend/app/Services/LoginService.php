@@ -11,10 +11,9 @@ class LoginService {
         $this->password = $password;
     }
 
-    public function authUser() : Bool // HARDCODED username and pass
+    public function authUser() : Bool // HARDCODED username and password, db needed
     {
         if($this->username === 'user' && $this->password === 'password') return true;
         return false;
     }
-
 }

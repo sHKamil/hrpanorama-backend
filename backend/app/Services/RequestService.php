@@ -17,7 +17,6 @@ class RequestService {
         http_response_code($errorCode);
         header('Content-Type: text/plain');
         echo $message;
-
-        return false;
+        exit;
     }
 }

@@ -19,16 +19,14 @@ class LoginValidator extends AbstractForm {
 
     private static function usernameField(String $username, Array $buffer) : Array
     {
-        if(self::textField($username, 5)) return $buffer;
-
-        return $buffer['username'] = 'Incorrect username lenght.';
+        if(!self::textField($username, 5)) $buffer['username'] = 'Incorrect username lenght.';
+        return $buffer;
     }
     
     private static function passwordField(String $password, Array $buffer) : Array
     {
-        if(self::textField($password, 8)) return $buffer;
-
-        return $buffer['password'] = 'Incorrect password lenght.';
+        if(self::textField($password, 8)) $buffer['password'] = 'Incorrect password lenght.';
+        return $buffer;
     }
 
 }
