@@ -1,1 +1,5 @@
 /backend/vendor/
+/backend/media/img/*
+!/backend/media/img/example.png
+/backend/media/pdf/*
+!/backend/media/pdf/example.pdf

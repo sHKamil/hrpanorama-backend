@@ -52,6 +52,6 @@ class Router
                 }
             }
         }
-        return RequestService::httpError(404, 'Page not found');
+        return RequestService::httpResponse(404, json_encode(["message" => "Page not found"]));
     }
 }

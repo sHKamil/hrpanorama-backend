@@ -42,7 +42,7 @@ class AuthService {
             if ($payload) {
                 return $payload;
             } else {
-                RequestService::httpError(401, "Unauthorized");
+                RequestService::httpResponse(401, json_encode(["message" => "Unauthorized"]));
             }
         }
 

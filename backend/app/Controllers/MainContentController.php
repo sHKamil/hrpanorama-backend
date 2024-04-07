@@ -2,8 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Services\PDFService;
+use App\Services\QRService;
 use App\Services\RequestService;
-use Dompdf\Dompdf;
 
 class MainContentController {
 
@@ -12,18 +13,13 @@ class MainContentController {
         // todo: verify user
 
         $content = $payload->content;
-        $dompdf = new Dompdf();
 
-        $html = '<html><body>' . $content . '</body></html>';
-        $dompdf->loadHtml($html);
-        $filename = uniqid() . '.pdf';
-        $dompdf->render();
-        $output = $dompdf->output();
-        file_put_contents("media/pdf/" . $filename, $output);
+        $pdfName = PDFService::generatePDF($content);
+        $imgName = QRService::generateQRCode();
 
-        return json_encode([
-            'status' => '200',
-            'pdfPath' => "media/pdf/" . $filename
-        ]);
+        return RequestService::httpResponse(201, json_encode([
+            'pdfPath' => "media/pdf/" . $pdfName,
+            'imgPath' => "media/img/" . $imgName
+        ]));
     }
 }

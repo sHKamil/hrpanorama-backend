@@ -7,15 +7,15 @@ class RequestService {
     public static function methodVerify(String $allowedRequestMethod): Bool
     {
         if($_SERVER['REQUEST_METHOD'] !== $allowedRequestMethod) {
-            return self::httpError(400, 'Bad Request');
+            return self::httpResponse(400, 'Bad Request');
         }
         return true;
     }
-
-    public static function httpError(Int $errorCode, String $message)
+    
+    public static function httpResponse(Int $responseCode, String $message)
     {
-        http_response_code($errorCode);
-        header('Content-Type: text/plain');
+        http_response_code($responseCode);
+        header('Content-Type: application/json');
         echo $message;
         exit;
     }
