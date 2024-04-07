@@ -1,7 +1,11 @@
 services:
   app:
     build:
+      args: 
+        HOST_USER_ID: ${HOST_USER_ID}
       dockerfile: Dockerfile
+    environment:
+      HOST_USER_ID: ${HOST_USER_ID}
     volumes:
       - ./backend:/var/www/html/
   web:

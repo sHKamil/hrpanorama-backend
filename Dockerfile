@@ -1,5 +1,9 @@
 FROM php:8.2-fpm
 
+ARG HOST_USER_ID
+
+RUN usermod -u $HOST_USER_ID www-data
+
 RUN apt-get update && apt-get install -y
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -14,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 
 COPY backend/ /var/www/html
+
 
 COPY .docker/composer/entrypoint.sh /entrypoint.sh
 CMD ["php-fpm"]
