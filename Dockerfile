@@ -11,7 +11,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zlib1g-dev \
         libxml2-dev \
         libzip-dev \
-    && docker-php-ext-install \
+        && docker-php-ext-install \
+		mysqli \
+        pdo pdo_mysql\
         zip \
         intl 
 

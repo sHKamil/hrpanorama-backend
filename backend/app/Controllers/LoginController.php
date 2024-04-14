@@ -30,7 +30,7 @@ class LoginController {
                 'message' => 'Wrong name or password'
             ]));
         }
-        return RequestService::httpResponse(200, json_encode([
+        return RequestService::httpResponse(403, json_encode([
                 'message' => 'Wrong name or password'
             ]));
         }
