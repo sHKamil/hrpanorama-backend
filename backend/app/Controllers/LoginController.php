@@ -11,8 +11,10 @@ class LoginController {
 
     public static function login()
     {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        $username = $data['username'];
+        $password = $data['password'];
 
         if(LoginValidator::validate($username, $password)){
             $loginService = new LoginService($username, $password);
@@ -24,9 +26,12 @@ class LoginController {
                 ]));
             }
 
-            return RequestService::httpResponse(401, json_encode([
+            return RequestService::httpResponse(403, json_encode([
                 'message' => 'Wrong name or password'
             ]));
         }
-    }
+        return RequestService::httpResponse(200, json_encode([
+                'message' => 'Wrong name or password'
+            ]));
+        }
 }

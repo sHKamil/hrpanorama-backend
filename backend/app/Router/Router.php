@@ -47,7 +47,7 @@ class Router
                     $authorization = new AuthService('HARDCODED');
                     $payload = $authorization->authorize($route['authorization']);
                     $class = new $route['class']();
-                    if($payload) return call_user_func_array([$class, $route['class_method']], [$payload]);
+                    // if($payload) return call_user_func_array([$class, $route['class_method']], [$payload]);
                     return call_user_func([$class, $route['class_method']]);
                 }
             }

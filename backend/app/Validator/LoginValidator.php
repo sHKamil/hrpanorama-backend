@@ -9,8 +9,8 @@ class LoginValidator extends AbstractForm {
     public static function validate(String $username, String $password) : Bool | Array
     {
         $buffer = [];
-        self::usernameField($username, $buffer);
-        self::passwordField($password, $buffer);
+        $buffer = self::usernameField($username, $buffer);
+        $buffer = self::passwordField($password, $buffer);
         
         if(!empty($buffer)) return $buffer;
 
@@ -28,5 +28,4 @@ class LoginValidator extends AbstractForm {
         if(self::textField($password, 8)) $buffer['password'] = 'Incorrect password lenght.';
         return $buffer;
     }
-
 }

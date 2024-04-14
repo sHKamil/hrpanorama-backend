@@ -8,13 +8,13 @@ use App\Services\RequestService;
 
 class MainContentController {
 
-    public static function generatePdf($payload)
+    public static function generatePdf()
     {
         // todo: verify user
 
-        $content = $payload->content;
+        $data = json_decode(file_get_contents('php://input'), true);
 
-        $pdfName = PDFService::generatePDF($content);
+        $pdfName = PDFService::generatePDF($data['content']);
         $imgName = QRService::generateQRCode();
 
         return RequestService::httpResponse(201, json_encode([
